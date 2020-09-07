@@ -19,3 +19,6 @@ Route::get('/', function () {
 Route::get('/using-component', function(){
     return view('UsingComponents');
 });
+
+Route::get('/teste/{param?}', 'web\HomeController@index');
+
