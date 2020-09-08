@@ -4,34 +4,42 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class createSettings extends Migration{
+class CreateProducts extends Migration
+{
     /**
      * Run the migrations.
      *
      * @return void
      */
-    public function up(){
-        Schema::create('settings', function (Blueprint $table) {
+    public function up()
+    {
+        Schema::create('products', function (Blueprint $table) {
             $table->id();
-            $table->string('key');
-            $table->string('value');
-            $table->string('description')->nullable();
-            $table->string('file')->nullable();
-
+            $table->string('name');
+            $table->string('title');
+            $table->string('slug');
+            $table->longText('description');
+            
             $table->bigInteger('created_by')->unsigned();
             $table->bigInteger('updated_by')->unsigned()->nullable();
 
             $table->foreign('created_by')->references('id')->on('users');
             $table->foreign('updated_by')->references('id')->on('users');
+
+            $table->boolean('deleted')->default(false);
+
             $table->timestamps();
+
         });
     }
+
     /**
      * Reverse the migrations.
      *
      * @return void
      */
-    public function down(){
-        Schema::dropIfExists('settings');
+    public function down()
+    {
+        Schema::dropIfExists('products');
     }
 }

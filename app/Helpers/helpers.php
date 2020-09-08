@@ -33,6 +33,4 @@ function base_url($path=false){
     return $url;
 }
 
-
-
 ?>
